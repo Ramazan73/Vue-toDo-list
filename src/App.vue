@@ -1,99 +1,21 @@
 <template>
+
   <div id="app">
-    <div class="add_task">
-      <div class="add_task__input">
-        <input type="text" v-model="new_task.title" placeholder="новая задача">
-        <input type="text" v-model="new_task.priority" placeholder="приоритет">
-        <button @click="add_task()" class="add_task__btn">Submit</button>
-      </div>
-      <textarea v-model="new_task.desc" placeholder="Описание"></textarea>
-    </div>
-    <div class="task-filter">
-      <input type="text" v-model="title" placeholder="введите название">
-    </div>
-    <div class="stats">
-      <task v-on:task_done="delete_task(index)" :data="data" v-for="(data, index) in tasksFiltered" :key="index"></task>
-    </div>
-    <h3 class="stats__title">{{"Текущих задач: "+ tasks.length}}</h3>
+    <nav>
+      <router-link to="/task-list">Task List</router-link>
+    </nav>
+
+    <router-view/>
+
   </div>
 </template>
 
 <script>
 
-import Task from './components/Task.vue'
 export default {
   name: 'App',
 
-  components: {
-    Task
-  },
-  data() {
-    return {
-      title: '',
-      new_task: {
-        title: '',
-        desc: ''
-      },
-      tasks: [
-        {
-          title: 'Изучить Javascript',
-          priority: 'низкий',
-          desc: 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например 1',
-        },
-        {
-          title: 'Изучить Vue',
-          priority: 'средний',
-          desc: 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например 2',
-        },
-        {
-          title: 'Изучить Angular',
-          priority: 'высокий',
-          desc: 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например 3',
-        },
-        {
-          title: 'Изучить React',
-          priority: 'низкий',
-          desc: 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например 4',
-        },
-        {
-          title: 'Изучить Angular',
-          priority: 'высокий',
-          desc: 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например 3',
-        },
-        {
-          title: 'Изучить React',
-          priority: 'низкий',
-          desc: 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например 4',
-        }
-      ]
-    }
-  },
-  computed:{
-    tasksFiltered: function(){
-      var taskTitle = this.title;
-      return this.tasks.filter(function (elem) {
-        if(taskTitle === '') return true;
-        else return elem.title.indexOf(taskTitle) > -1;
-      })
-    }
-  },
-  methods: {
-    delete_task(id) {
-      this.tasks.splice(id, 1)
-    },
-    add_task() {
-      if(this.new_task.title != '') {
-        this.tasks.push({
-          title: this.new_task.title,
-          priority: this.new_task.priority,
-          desc: this.new_task.desc
-        });
-        this.new_task.title='';
-        this.new_task.priority='';
-        this.new_task.desc='';
-      }
-    }
-  }
+
 }
 </script>
 
