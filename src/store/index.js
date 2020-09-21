@@ -45,10 +45,25 @@ export default new Vuex.Store({
         ]
     },
     mutations: {
-
+        addNewTask(state, task) {
+            state.tasks.push(task)
+        }
     },
     actions: {
-
+        addNewTask(ctx, payload) {
+            if(this.new_task.title != '') {
+                this.allTasks.push({
+                    title: this.new_task.title,
+                    priority: this.new_task.priority,
+                    desc: this.new_task.desc
+                });
+                this.new_task.title='';
+                this.new_task.priority='';
+                this.new_task.desc='';
+            }
+            ctx.commin('addNewTask', {task})
+            return true
+        }
     },
     modules: {
 

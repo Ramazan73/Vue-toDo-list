@@ -51,16 +51,7 @@ export default {
       this.allTasks.splice(id, 1)
     },
     add_task() {
-      if(this.new_task.title != '') {
-        this.allTasks.push({
-          title: this.new_task.title,
-          priority: this.new_task.priority,
-          desc: this.new_task.desc
-        });
-        this.new_task.title='';
-        this.new_task.priority='';
-        this.new_task.desc='';
-      }
+      this.$store.dispatch('addNewTask', {...})
     }
   },
 }
