@@ -56,6 +56,9 @@ export default new Vuex.Store({
     getters: {
         allTasks(state) {
             return state.tasks
+        },
+        getProduct: state => id => {
+            return state.tasks.find(item => +item.id === +id) || null
         }
     }
 })
