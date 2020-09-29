@@ -1,16 +1,19 @@
 <template>
     <div class="task">
         <div>
+          <img :src="'../assets' + data.image" >
           <router-link
               active-class="is-active"
               class="link"
               :to="{ name: 'task', params: { id: data.id } }">
           <h3 class="task__title">{{ data.title }} </h3>
           </router-link>
-            <p class="task__desc">{{ data.desc }} </p>
-            <p class="task__priority">Приоритет: {{ data.priority }} </p>
+            <p class="task__brand">{{ data.brand }} </p>
+            <p class="task__price-value">{{ data.regular_price.value }}
+              <span class="task__price-currency">{{ data.regular_price.currency }}</span>
+            </p>
+          <button @click="addToCart(data)">Add To Cart</button>
         </div>
-        <button @click="taskDone()" class="task__done">✔</button>
     </div>
 </template>
 
@@ -18,10 +21,9 @@
 export default {
     props: ['data'],
     methods: {
-        taskDone() {
-            this.$emit('task_done');
-        }
-    },
-
+      addToCart(product) {
+        console.log(product)
+      }
+    }
 }
 </script>

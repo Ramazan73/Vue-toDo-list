@@ -1,21 +1,26 @@
 <template>
 
   <div id="app">
-    <nav>
-      <router-link to="/task-list">Task List</router-link>
-    </nav>
-
-    <router-view/>
-
+    <AppHeader/>
+    <section class="main-wrapper">
+        <AppProductBrands/>
+        <AppProductList/>
+    </section>
   </div>
 </template>
 
 <script>
 
+import AppProductBrands from "@/components/Brands";
+import AppProductList from "@/components/TaskList";
+import AppHeader from "@/components/Header";
 export default {
   name: 'App',
-
-
+  components: {
+    AppProductBrands,
+    AppProductList,
+    AppHeader
+  },
 }
 </script>
 
@@ -65,7 +70,8 @@ export default {
   justify-content: space-between;
   margin: -10px -10px 10px -10px;
   padding: 10px;
-  max-width: 30%;
+  max-width: 25%;
+  width: 100%;
   text-align: left;
 }
 .task:hover {
@@ -133,6 +139,9 @@ textarea {
   border-radius: 4px;
   background-color: #2f485811;
   color: black;
+}
+.main-wrapper {
+  display: flex;
 }
 
 </style>

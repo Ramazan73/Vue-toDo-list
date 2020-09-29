@@ -9,7 +9,8 @@
             :to="{ name: 'task', params: { id: product.id } }">
           <h3 class="task__title">{{ product.title }} </h3>
         </router-link>
-        <p class="task__desc">{{ product.desc }} </p>
+        <p class="task__price">{{ product.regular_price.currency }} </p>
+        <p class="task__price">{{ product.brand }} </p>
         <p class="task__priority">Приоритет: {{ product.priority }} </p>
       </div>
       <button @click="taskDone()" class="task__done">✔</button>

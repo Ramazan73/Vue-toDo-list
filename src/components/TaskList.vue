@@ -1,58 +1,140 @@
 <template>
-<div>
-  <div class="add_task">
-    <div class="add_task__input">
-      <input type="text" v-model="new_task.title" placeholder="новая задача">
-      <input type="text" v-model="new_task.priority" placeholder="приоритет">
-      <button @click="add_task()" class="add_task__btn">Submit</button>
+  <div class="products-wrapper">
+    <h2>Catalog</h2>
+    <div class="stats">
+      <task :data=data v-for="(data, index) in tasks" :key="index"></task>
     </div>
-    <textarea v-model="new_task.desc" placeholder="Описание"></textarea>
+    <h3 class="stats__title">{{"Текущих задач: "+ tasks.length}}</h3>
   </div>
-  <div class="task-filter">
-    <input type="text" v-model="title" placeholder="введите название">
-  </div>
-  <div class="stats">
-    <task v-on:task_done="delete_task(index)" :data=data v-for="(data, index) in tasksFiltered" :key="index"></task>
-  </div>
-  <h3 class="stats__title">{{"Текущих задач: "+ allTasks.length}}</h3>
-</div>
 </template>
 
 <script>
 import Task from './Task.vue'
 
 export default {
+  name: 'AppProductList',
   components: {
     Task
   },
   data() {
     return {
-      title: '',
-      new_task: {
-        title: '',
-        desc: ''
-      }
+      tasks: [
+        {
+          "type": "simple",
+          "id": 1,
+          "sku": "s1",
+          "title": "Product 1",
+          "regular_price": {
+            "currency": "USD",
+            "value": 27.12
+          },
+          "image": "/images/1.png",
+          "brand": 9
+        },
+        {
+          "type": "simple",
+          "id": 2,
+          "sku": "s2",
+          "title": "Product 2",
+          "regular_price": {
+            "currency": "USD",
+            "value": 36.87
+          },
+          "image": "/images/2.png",
+          "brand": 8
+        },
+        {
+          "type": "simple",
+          "id": 3,
+          "sku": "s3",
+          "title": "Product 3",
+          "regular_price": {
+            "currency": "USD",
+            "value": 28.91
+          },
+          "image": "/images/3.png",
+          "brand": 2
+        },
+        {
+          "type": "simple",
+          "id": 4,
+          "sku": "s4",
+          "title": "Product 4",
+          "regular_price": {
+            "currency": "USD",
+            "value": 41.23
+          },
+          "image": "/images/4.png",
+          "brand": 7
+        },
+        {
+          "type": "simple",
+          "id": 5,
+          "sku": "s5",
+          "title": "Product 5",
+          "regular_price": {
+            "currency": "USD",
+            "value": 88.00
+          },
+          "image": "/images/5.png",
+          "brand": 3
+        },
+        {
+          "type": "simple",
+          "id": 6,
+          "sku": "s6",
+          "title": "Product 6",
+          "regular_price": {
+            "currency": "USD",
+            "value": 127.41
+          },
+          "image": "/images/6.png",
+          "brand": 6
+        },
+        {
+          "type": "simple",
+          "id": 7,
+          "sku": "s7",
+          "title": "Product 7",
+          "regular_price": {
+            "currency": "USD",
+            "value": 123.40
+          },
+          "image": "/images/7.png",
+          "brand": 5
+        },
+        {
+          "type": "simple",
+          "id": 8,
+          "sku": "s8",
+          "title": "Product 8",
+          "regular_price": {
+            "currency": "USD",
+            "value": 92.32
+          },
+          "image": "/images/8.png",
+          "brand": 1
+        },
+        {
+          "type": "simple",
+          "id": 9,
+          "sku": "s9",
+          "title": "Product 9",
+          "regular_price": {
+            "currency": "USD",
+            "value": 53.40
+          },
+          "image": "/images/9.png",
+          "brand": 2
+        }
+      ]
     }
-  },
-  computed:{
-    allTasks() {
-      return this.$store.getters.allTasks;
-    },
-    tasksFiltered: function(){
-      var taskTitle = this.title;
-      return this.allTasks.filter(function (elem) {
-        if(taskTitle === '') return true;
-        else return elem.title.indexOf(taskTitle) > -1;
-      })
-    }
-  },
-  methods: {
-    delete_task(id) {
-      this.allTasks.splice(id, 1)
-    },
-    add_task() {
-      this.$store.dispatch('addNewTask', {...})
-    }
-  },
+  }
 }
 </script>
+
+<style>
+  .products-wrapper {
+    width: 100%;
+  }
+</style>
