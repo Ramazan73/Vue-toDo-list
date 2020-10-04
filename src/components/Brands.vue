@@ -1,7 +1,7 @@
 <template>
   <div class="brands-wrapper">
-    <h2>All Brands</h2>
-    <a v-for="(data, index) in brands" :key="index">{{data.title}}</a>
+    <h3>All Brands</h3>
+    <a @click="clickedBrand(data)" :class="(itemActive === data.id) ? 'active' : ''" v-for="(data, index) in brands" :key="index">{{data.title}}</a>
   </div>
 </template>
 
@@ -10,63 +10,70 @@ export default {
   name: 'AppProductBrands',
   data() {
     return {
+      itemActive: '',
       brands:
-          [
-            {
-              "id": 1,
-              "title": "Brand 1",
-              "sort": "100",
-              "code": "brand_1"
-            },
-            {
-              "id": 2,
-              "title": "Brand 2",
-              "sort": "200",
-              "code": "brand_2"
-            },
-            {
-              "id": 3,
-              "title": "Brand 3",
-              "sort": "300",
-              "code": "brand_3"
-            },
-            {
-              "id": 4,
-              "title": "Brand 4",
-              "sort": "400",
-              "code": "brand_4"
-            },
-            {
-              "id": 5,
-              "title": "Brand 5",
-              "sort": "500",
-              "code": "brand_5"
-            },
-            {
-              "id": 6,
-              "title": "Brand 6",
-              "sort": "600",
-              "code": "brand_6"
-            },
-            {
-              "id": 7,
-              "title": "Brand 7",
-              "sort": "700",
-              "code": "brand_7"
-            },
-            {
-              "id": 8,
-              "title": "Brand 8",
-              "sort": "700",
-              "code": "brand_8"
-            },
-            {
-              "id": 9,
-              "title": "Brand 9",
-              "sort": "900",
-              "code": "brand_9"
-            }
-          ]
+        [
+          {
+            "id": 1,
+            "title": "Brand 1",
+            "sort": "100",
+            "code": "brand_1"
+          },
+          {
+            "id": 2,
+            "title": "Brand 2",
+            "sort": "200",
+            "code": "brand_2"
+          },
+          {
+            "id": 3,
+            "title": "Brand 3",
+            "sort": "300",
+            "code": "brand_3"
+          },
+          {
+            "id": 4,
+            "title": "Brand 4",
+            "sort": "400",
+            "code": "brand_4"
+          },
+          {
+            "id": 5,
+            "title": "Brand 5",
+            "sort": "500",
+            "code": "brand_5"
+          },
+          {
+            "id": 6,
+            "title": "Brand 6",
+            "sort": "600",
+            "code": "brand_6"
+          },
+          {
+            "id": 7,
+            "title": "Brand 7",
+            "sort": "700",
+            "code": "brand_7"
+          },
+          {
+            "id": 8,
+            "title": "Brand 8",
+            "sort": "700",
+            "code": "brand_8"
+          },
+          {
+            "id": 9,
+            "title": "Brand 9",
+            "sort": "900",
+            "code": "brand_9"
+          }
+        ]
+    }
+  },
+  methods: {
+    clickedBrand(value) {
+      this.itemActive = value.id;
+      this.$emit('brandItem', value)
     }
   }
 
@@ -78,6 +85,9 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: left;
-
+  width: 200px;
+}
+.brands-wrapper .active {
+  text-decoration: underline;
 }
 </style>

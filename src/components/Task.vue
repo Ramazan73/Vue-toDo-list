@@ -1,13 +1,8 @@
 <template>
     <div class="task">
         <div>
-          <img :src="'../assets' + data.image" >
-          <router-link
-              active-class="is-active"
-              class="link"
-              :to="{ name: 'task', params: { id: data.id } }">
+          <img :src="require('../assets' + data.image)" >
           <h3 class="task__title">{{ data.title }} </h3>
-          </router-link>
             <p class="task__brand">{{ data.brand }} </p>
             <p class="task__price-value">{{ data.regular_price.value }}
               <span class="task__price-currency">{{ data.regular_price.currency }}</span>
@@ -22,8 +17,14 @@ export default {
     props: ['data'],
     methods: {
       addToCart(product) {
-        console.log(product)
+        this.$store.dispatch('addToCart', product)
       }
     }
 }
 </script>
+
+<style>
+.task img {
+  max-width: 180px;
+}
+</style>

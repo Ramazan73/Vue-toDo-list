@@ -1,23 +1,18 @@
 <template>
-
   <div id="app">
     <AppHeader/>
-    <section class="main-wrapper">
-        <AppProductBrands/>
-        <AppProductList/>
-    </section>
+    <AppProductList/>
   </div>
 </template>
 
 <script>
 
-import AppProductBrands from "@/components/Brands";
 import AppProductList from "@/components/TaskList";
 import AppHeader from "@/components/Header";
+
 export default {
   name: 'App',
   components: {
-    AppProductBrands,
     AppProductList,
     AppHeader
   },
@@ -142,6 +137,9 @@ textarea {
 }
 .main-wrapper {
   display: flex;
+}
+h3 {
+  text-align: left;
 }
 
 </style>

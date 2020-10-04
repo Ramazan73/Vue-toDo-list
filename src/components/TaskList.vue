@@ -1,20 +1,25 @@
 <template>
-  <div class="products-wrapper">
-    <h2>Catalog</h2>
-    <div class="stats">
-      <task :data=data v-for="(data, index) in tasks" :key="index"></task>
+  <div class="main-wrapper">
+    <AppProductBrands @brandItem="sortBybrand"/>
+    <div class="products-wrapper">
+      <h3>Catalog</h3>
+      <div class="stats">
+        <task :data=data v-for="(data, index) in filteredProducts" :key="index"></task>
+      </div>
+      <h3 class="stats__title">{{"Текущих задач: "+ filteredProducts.length}}</h3>
     </div>
-    <h3 class="stats__title">{{"Текущих задач: "+ tasks.length}}</h3>
   </div>
 </template>
 
 <script>
 import Task from './Task.vue'
+import AppProductBrands from "@/components/Brands";
 
 export default {
   name: 'AppProductList',
   components: {
-    Task
+    Task,
+    AppProductBrands
   },
   data() {
     return {
@@ -127,7 +132,27 @@ export default {
           "image": "/images/9.png",
           "brand": 2
         }
-      ]
+      ],
+      sortedProducts: []
+    }
+  },
+  computed: {
+    filteredProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts;
+      }
+        return this.tasks;
+    }
+  },
+  methods: {
+    sortBybrand(brand) {
+      this.sortedProducts = [];
+      let vm = this;
+      this.tasks.map(function (item) {
+        if (item.brand === brand.id) {
+          vm.sortedProducts.push(item);
+        }
+      })
     }
   }
 }
@@ -136,5 +161,8 @@ export default {
 <style>
   .products-wrapper {
     width: 100%;
+  }
+  .main-wrapper {
+    margin-top: 20px;
   }
 </style>

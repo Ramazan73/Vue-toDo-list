@@ -1,12 +1,16 @@
 <template>
   <div class="minicart-wrapper">
-    <span>Cart</span>
+    <span>Cart:{{totalNumberOfCartItems}}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppMinicart'
-
+  name: 'AppMinicart',
+  computed: {
+    totalNumberOfCartItems() {
+      return this.$store.getters.totalNumberOfCartItems;
+    }
+  }
 }
 </script>

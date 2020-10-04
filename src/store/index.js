@@ -5,25 +5,33 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        cartItem: []
+        cartItems: []
     },
     mutations: {
-        updateProducts: (state, products) => {
-            state.products = products;
-        }
+        addToCart (state, payload) {
+
+            let checkingItem = state.cartItems.find(product => product.id == payload.id);
+
+            if (checkingItem) {
+                checkingItem.quantity ++;
+            } else {
+                state.cartItems.push(payload);
+                Vue.set(payload, 'quantity', 1);
+            }
+
+        },
     },
     actions: {
-
+        addToCart({commit}, product) {
+            commit('addToCart', product)
+        }
     },
     modules: {
 
     },
     getters: {
-        allTasks(state) {
-            return state.tasks
+        totalNumberOfCartItems: state => {
+            return state.cartItems.length;
         },
-        getProduct: state => id => {
-            return state.tasks.find(item => item.id === id) || null
-        }
     }
 })
