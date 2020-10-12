@@ -7,7 +7,7 @@
 
 <script>
 
-import AppProductList from "@/components/TaskList";
+import AppProductList from "@/components/ProductsList";
 import AppHeader from "@/components/Header";
 
 export default {
@@ -69,7 +69,7 @@ export default {
   width: 100%;
   text-align: left;
 }
-.task:hover {
+.task:hover > div {
   background-color: #2f485811;
 }
 .task__title {

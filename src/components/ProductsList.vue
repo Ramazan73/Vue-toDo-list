@@ -4,7 +4,7 @@
     <div class="products-wrapper">
       <h3>Catalog</h3>
       <div class="stats">
-        <task :data=data v-for="(data, index) in filteredProducts" :key="index"></task>
+        <product :data=data v-for="(data, index) in filteredProducts" :key="index"></product>
       </div>
       <h3 class="stats__title">{{"Текущих задач: "+ filteredProducts.length}}</h3>
     </div>
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import Task from './Task.vue'
+import Product from './Product.vue'
 import AppProductBrands from "@/components/Brands";
 
 export default {
   name: 'AppProductList',
   components: {
-    Task,
+    Product,
     AppProductBrands
   },
   data() {
