@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <AppHeader/>
-    <AppProductList/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-import AppProductList from "@/components/ProductsList";
 import AppHeader from "@/components/Header";
 
 export default {
   name: 'App',
   components: {
-    AppProductList,
     AppHeader
   },
 }

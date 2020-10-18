@@ -1,6 +1,12 @@
 <template>
   <div class="header">
-    <img src="../assets/logo.png" class="logo" alt="logo">
+    <router-link to='/'><img src="../assets/logo.png" class="logo" alt="logo"></router-link>
+    <nav class="menu">
+      <ul>
+        <li> <router-link to='/'>Home</router-link></li>
+        <li> <router-link to='/cart'>Cart</router-link></li>
+      </ul>
+    </nav>
     <AppMinicart/>
   </div>
 </template>
@@ -23,5 +29,12 @@ export default {
     justify-content: space-between;
     padding-bottom: 20px;
     border-bottom: 1px solid;
+  }
+  .menu ul {
+    list-style: none;
+    display: flex;
+  }
+  .menu li {
+    margin: 0 10px;
   }
 </style>

@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Task from '../pages/item'
-import TaskList from '../components/ProductsList'
+import cart from '../components/cart'
+import AppProductList from '../components/ProductsList'
 
 Vue.use(Router);
 
 let router = new Router( {
+    mode: 'history',
     routes: [
         {
-            path: '/task/:id',
-            name: 'task',
-            component: Task,
-            props: true
+            path: '/cart',
+            name: 'cart',
+            component: cart
         },
         {
-            path: '/task-list',
-            name: 'taskList',
-            component: TaskList
-        },
+            path: '/',
+            name: 'AppProductList',
+            component: AppProductList
+        }
     ]
 });
 

@@ -6,8 +6,8 @@
         <span>Количество</span>
       </div>
       <div class="minicart-modal" v-for="(product, index) in cartItems" :key="index">
-        <span>{{product.title}} </span>
-        <span> {{product.quantity}}</span>
+        <span>{{product.data.title}} </span>
+        <span> {{product.qty}}</span>
       </div>
       <button @click.prevent="close" class="btn-close">Close</button>
     </div>
